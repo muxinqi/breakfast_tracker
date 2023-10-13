@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  egg_count: 1
+  corn_count: 1
+
+two:
+  name: MyString
+  egg_count: 1
+  corn_count: 1
