@@ -1,0 +1,22 @@
+<h1>一共要煮</h1>
+<h2>🥚鸡蛋 <%= @total_eggs %> 个</h2>
+<h2>🌽玉米 <%= @total_corn %> 根</h2>
+
+<table>
+  <thead>
+  <tr>
+    <th>昵称</th>
+    <th>🥚鸡蛋</th>
+    <th>🌽玉米</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.name %></td>
+      <td><%= user.egg_count %></td>
+      <td><%= user.corn_count %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
