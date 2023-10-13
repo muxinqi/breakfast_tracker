@@ -1,0 +1,18 @@
+<h1>添加新用户</h1>
+
+<% if flash[:error] %>
+  <%= flash[:error] %>
+<% end %>
+
+<%= form_with model: @user, url: users_path do |form| %>
+  <%= form.label :name, "昵称" %>
+  <%= form.text_field :name, placeholder: "请输入昵称" %>
+  <br>
+  <%= form.label :egg_count, "🥚鸡蛋" %>
+  <%= form.number_field :egg_count, placeholder: "0" %>个
+  <br>
+  <%= form.label :corn_count, "🌽玉米" %>
+  <%= form.number_field :corn_count, placeholder: "0" %>根
+  <br>
+  <%= form.submit "提交" %>
+<% end %>
