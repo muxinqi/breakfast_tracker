@@ -1,0 +1,4 @@
+class CookingRecord < ApplicationRecord
+  belongs_to :operator, class_name: "User"
+  belongs_to :terminator, class_name: "User", optional: true
+end

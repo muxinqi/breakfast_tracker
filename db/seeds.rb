@@ -7,3 +7,5 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+mason = User.create(name: "Mason", egg_count: 3, corn_count: 0)
+CookingRecord.create(operator: mason, egg_count: 3, corn_count: 0)
