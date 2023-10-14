@@ -15,8 +15,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_14_083847) do
     t.integer "operator_id", null: false
     t.integer "terminator_id"
     t.datetime "finished_at"
-    t.integer "egg_count"
-    t.integer "corn_count"
+    t.integer "egg_count", null: false
+    t.integer "corn_count", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["operator_id"], name: "index_cooking_records_on_operator_id"
@@ -24,9 +24,9 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_14_083847) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.integer "egg_count"
-    t.integer "corn_count"
+    t.string "name", null: false
+    t.integer "egg_count", null: false
+    t.integer "corn_count", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -2,6 +2,20 @@
   <%= flash[:notice] %>
 <% end %>
 
+<% if @in_progress_cooking_record %>
+  <h1>正在烹饪中</h1>
+  开始时间：<%= @in_progress_cooking_record.created_at %>
+  <%= button_to "结束烹饪", finish_cooking_record_path(@in_progress_cooking_record), method: :patch %>
+<% else %>
+  <%= button_to "开始烹饪", cooking_records_path, method: :post %>
+<% end %>
+<p>烹饪15分钟后，方可手动结束烹饪。烹饪1小时后，系统会自动结束烹饪记录。</p>
+<p>这里暂不提供“薛定谔的鸡蛋和玉米”，所以烹饪期间无法修改食材数量</p>
+
+<% @cooking_records.each do |record| %>
+  <%= record.to_s %><br>
+<% end %>
+
 <h1>今天一共要煮</h1>
 <h2>
   <%= turbo_stream_from "total-eggs" %>

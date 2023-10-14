@@ -13,4 +13,10 @@ Rails.application.routes.draw do
       patch :decrease_corn_count
     end
   end
+
+  resources :cooking_records, only: [:create] do
+    member do
+      patch :finish
+    end
+  end
 end
