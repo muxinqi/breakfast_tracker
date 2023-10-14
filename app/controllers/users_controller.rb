@@ -15,26 +15,38 @@ class UsersController < ApplicationController
 
   def increase_egg_count
     @user = User.find(params[:id])
-    @user.increment!(:egg_count)
-    redirect_to root_path
+    @user.egg_count = @user.egg_count + 1
+    @user.save
+    respond_to do |format|
+      format.html { redirect_to root_path }
+    end
   end
 
   def decrease_egg_count
     @user = User.find(params[:id])
-    @user.decrement!(:egg_count)
-    redirect_to root_path
+    @user.egg_count = @user.egg_count - 1
+    @user.save
+    respond_to do |format|
+      format.html { redirect_to root_path }
+    end
   end
 
   def increase_corn_count
     @user = User.find(params[:id])
-    @user.increment!(:corn_count)
-    redirect_to root_path
+    @user.corn_count = @user.corn_count + 1
+    @user.save
+    respond_to do |format|
+      format.html { redirect_to root_path }
+    end
   end
 
   def decrease_corn_count
     @user = User.find(params[:id])
-    @user.decrement!(:corn_count)
-    redirect_to root_path
+    @user.corn_count = @user.corn_count - 1
+    @user.save
+    respond_to do |format|
+      format.html { redirect_to root_path }
+    end
   end
 
   private

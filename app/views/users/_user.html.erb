@@ -1,0 +1,13 @@
+<div id="<%= dom_id(user) %>">
+  <p><%= user.name %></p>
+  <p>
+    <%= user.egg_count %>
+    <%= button_to "+", increase_egg_count_user_path(user), method: :patch %>
+    <%= button_to "-", decrease_egg_count_user_path(user), method: :patch %>
+  </p>
+  <p>
+    <%= user.corn_count %>
+    <%= button_to "+", increase_corn_count_user_path(user), method: :patch %>
+    <%= button_to "-", decrease_corn_count_user_path(user), method: :patch %>
+  </p>
+</div>
