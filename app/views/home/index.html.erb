@@ -4,7 +4,7 @@
 
 <% if @in_progress_cooking_record %>
   <h1>正在烹饪中</h1>
-  开始时间：<%= @in_progress_cooking_record.created_at %>
+  开始时间：<%= time_tag @in_progress_cooking_record.created_at, "data-local": "time-ago" %>
   <%= button_to "结束烹饪", finish_cooking_record_path(@in_progress_cooking_record), method: :patch %>
 <% else %>
   <%= button_to "开始烹饪", cooking_records_path, method: :post %>
@@ -13,7 +13,7 @@
 <p>这里暂不提供“薛定谔的鸡蛋和玉米”，所以烹饪期间无法修改食材数量</p>
 
 <% @cooking_records.each do |record| %>
-  <%= record.to_s %><br>
+  <p><%= record.operator.name %> <%= time_tag record.created_at, "data-local": "time-ago" %></p>
 <% end %>
 
 <h1>今天一共要煮</h1>

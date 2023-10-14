@@ -26,7 +26,7 @@ class CookingRecordsController < ApplicationController
     end
 
     # 烹饪开始后的15分钟，不可以手动结束。
-    if cooking_record.created_at < 15.minutes.ago
+    if cooking_record.created_at > 15.minutes.ago
       redirect_to root_path, status: :temporary_redirect, notice: '烹饪开始后的15分钟，不可以手动结束。'
       return
     end
