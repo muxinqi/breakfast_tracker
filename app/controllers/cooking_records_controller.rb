@@ -7,7 +7,7 @@ class CookingRecordsController < ApplicationController
       redirect_to root_path, status: :unprocessable_entity, alert: 'Cooking record was not created because there is a cooking record in progress.'
       return
     end
-    if CookingRecord.create!(operator_id: mock_user_id, egg_count: User.total_eggs, corn_count: User.total_corn)
+    if CookingRecord.create!(operator_id: mock_user_id, finished_at: 1.hour.from_now, egg_count: User.total_eggs, corn_count: User.total_corn)
       redirect_to root_path, notice: 'Cooking record was successfully created.'
     else
       redirect_to root_path, status: :unprocessable_entity, alert: 'Cooking record was not created.'
@@ -26,7 +26,7 @@ class CookingRecordsController < ApplicationController
     end
 
     # 烹饪开始后的15分钟，不可以手动结束。
-    if cooking_record.created_at > 15.minutes.ago
+    if cooking_record.created_at > (Rails.env.development? ? 15.seconds.ago : 15.minutes.ago)
       redirect_to root_path, status: :temporary_redirect, notice: '烹饪开始后的15分钟，不可以手动结束。'
       return
     end
