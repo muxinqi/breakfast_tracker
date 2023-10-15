@@ -7,7 +7,14 @@ class CookingRecordsController < ApplicationController
       redirect_to root_path, status: :unprocessable_entity, warning: '当前有未结束的烹饪，请刷新页面查看最新状态。'
       return
     end
-    if CookingRecord.create!(operator_id: mock_user_id, finished_at: 1.hour.from_now, egg_count: User.total_eggs, corn_count: User.total_corn)
+
+    success = ActiveRecord::Base.transaction do
+      cooking = CookingRecord.create!(operator_id: mock_user_id, egg_count: User.total_eggs, corn_count: User.total_corn)
+      User.all.each do |user|
+        Meal.create!(diner_id: user.id, cooking_id: cooking.id, egg_count: user.egg_count, corn_count: user.corn_count)
+      end
+    end
+    if success
       redirect_to root_path, success: '操作成功，开始烹饪啦。'
     else
       redirect_to root_path, status: :unprocessable_entity, error: '操作失败，请稍后再试。'

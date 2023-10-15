@@ -68,11 +68,11 @@
     <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
       <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
     </div>
-    <div class="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
+    <div class="mx-auto max-w-3xl py-32 sm:py-48 lg:py-56">
       <div class="hidden sm:mb-8 sm:flex sm:justify-center">
-        <div class="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-          Announcing our next round of funding. <a href="#" class="font-semibold text-indigo-600"><span class="absolute inset-0" aria-hidden="true"></span>Read more <span aria-hidden="true">&rarr;</span></a>
-        </div>
+<!--        <div class="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">-->
+<!--          Announcing our next round of funding. <a href="#" class="font-semibold text-indigo-600"><span class="absolute inset-0" aria-hidden="true"></span>Read more <span aria-hidden="true">&rarr;</span></a>-->
+<!--        </div>-->
       </div>
       <div class="text-center">
         <div class="flex justify-center text-2xl font-semibold text-gray-600">
@@ -125,10 +125,10 @@
     <div id="accordion-arrow-icon-body-1" aria-labelledby="accordion-arrow-icon-heading-1">
       <div class="p-5 rounded-b-xl border border-b-1 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
         <p class="mb-2 text-gray-500 dark:text-gray-400">
-          1. 烹饪15分钟后，方可手动结束烹饪。烹饪1小时后，系统会自动结束烹饪记录。
+          1. 烹饪 15 分钟后，方可手动结束烹饪。烹饪 1 小时后，系统会自动结束烹饪记录。
         </p>
         <p class="text-gray-500 dark:text-gray-400">
-          2. 这里暂不提供“薛定谔的鸡蛋和玉米”，所以烹饪期间无法修改食材数量
+          2. 这里暂不提供“薛定谔的鸡蛋和玉米”，所以烹饪期间无法修改食材数量，无法添加新用户。
         </p>
       </div>
     </div>
@@ -190,16 +190,28 @@
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
       <dl class="grid grid-cols-1 gap-x-8 gap-y-16 text-center lg:grid-cols-3">
         <div class="mx-auto flex max-w-xs flex-col gap-y-4">
-          <dt class="text-base leading-7 text-gray-600">Transactions every 24 hours</dt>
-          <dd class="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">44 million</dd>
+          <dt class="text-base leading-7 text-gray-600">
+            累计食用鸡蛋
+          </dt>
+          <dd class="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
+            <%= @total_eaten_eggs %> 颗
+          </dd>
         </div>
         <div class="mx-auto flex max-w-xs flex-col gap-y-4">
-          <dt class="text-base leading-7 text-gray-600">Assets under holding</dt>
-          <dd class="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">$119 trillion</dd>
+          <dt class="text-base leading-7 text-gray-600">
+            享受优质烹饪服务
+          </dt>
+          <dd class="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
+            <%= @total_eaten_meal %> 人次
+          </dd>
         </div>
         <div class="mx-auto flex max-w-xs flex-col gap-y-4">
-          <dt class="text-base leading-7 text-gray-600">New users annually</dt>
-          <dd class="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">46,000</dd>
+          <dt class="text-base leading-7 text-gray-600">
+            年度营收
+          </dt>
+          <dd class="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
+            ¥<%= @total_eaten_eggs + @total_eaten_corn * 2 %>
+          </dd>
         </div>
       </dl>
     </div>
@@ -212,7 +224,7 @@
           团队成员
         </h2>
         <p class="mt-6 text-lg leading-8 text-gray-600">
-          这里是团队中每一个可爱的人
+          这里是团队中每一个可爱的人儿
         </p>
       </div>
       <%= turbo_stream_from "users" %>
@@ -232,9 +244,14 @@
   </div>
 
   <div id="history" class="bg-white pt-24 px-6 mx-auto max-w-7xl grid gap-x-8 gap-y-8 md:grid-cols-3">
-    <h2 class="max-w-2xl text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+    <div class="max-w-2xl">
+    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
       历史成就
     </h2>
+    <p class="mt-6 text-lg leading-8 text-gray-600">
+      此处仅展示最近的 10 条记录，<br>因为我们也想跟【碳中和】沾沾光
+    </p>
+    </div>
     <ol class="relative border-l border-gray-200 dark:border-gray-700 md:col-span-2">
       <% @cooking_records.each do |cooking| %>
         <li class="mb-10 ml-4">
@@ -246,8 +263,8 @@
             🥚鸡蛋 <%= cooking.egg_count %> 个，🌽玉米 <%= cooking.corn_count %> 根
           </h3>
           <div class="flex mb-5 -space-x-3">
-            <% 5.times.each do %>
-              <img class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800" src="https://ui-avatars.com/api/?name=John+Doe" alt="">
+            <% cooking.meals.each do |meal| %>
+              <img class="w-14 h-14 border-2 border-white rounded-full dark:border-gray-800" src="https://ui-avatars.com/api/?name=<%= meal.diner.name %>&length=6&font-size=0.25&size=256" alt="">
             <% end %>
           </div>
 <!--          <a href="#" class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-200 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700">-->
@@ -262,7 +279,9 @@
 
   <div class="bg-white py-24 sm:py-32">
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
-      <h2 class="text-center text-lg font-semibold leading-8 text-gray-900">Trusted by the world’s most innovative teams</h2>
+      <h2 class="text-center text-lg font-semibold leading-8 text-gray-900">
+        此处展示了一些我们不认识的 Logo，用来展示我们的产品好像真的很受欢迎
+      </h2>
       <div class="mx-auto mt-10 grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5">
         <img class="col-span-2 max-h-12 w-full object-contain lg:col-span-1" src="https://tailwindui.com/img/logos/158x48/transistor-logo-gray-900.svg" alt="Transistor" width="158" height="48">
         <img class="col-span-2 max-h-12 w-full object-contain lg:col-span-1" src="https://tailwindui.com/img/logos/158x48/reform-logo-gray-900.svg" alt="Reform" width="158" height="48">

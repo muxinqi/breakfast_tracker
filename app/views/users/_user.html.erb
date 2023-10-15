@@ -3,7 +3,7 @@
     <%= user.name %>
   </div>
   <p class="mb-6 font-normal text-gray-500 dark:text-gray-400">
-    早餐一共吃了 x 个鸡蛋，y 根玉米
+    早餐一共吃了 <%= user.meals.sum(:egg_count) %> 个鸡蛋，<%= user.meals.sum(:corn_count) %> 根玉米
   </p>
   <div class="inline-flex items-center text-gray-500">
     今天想吃
@@ -13,12 +13,8 @@
       🥚鸡蛋 <%= user.egg_count %> 个
     </span>
     <div class="flex gap-x-4">
-<!--      <div class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">-->
-        <%= button_to "-", decrease_egg_count_user_path(user), method: :patch, class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" %>
-<!--      </div>-->
-      <div class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-        <%= button_to "+", increase_egg_count_user_path(user), method: :patch %>
-      </div>
+      <%= button_to "-", decrease_egg_count_user_path(user), method: :patch, disabled: user.egg_count == 0, class: "text-white bg-blue-700 hover:bg-blue-800 disabled:bg-blue-400 disabled:cursor-not-allowed focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" %>
+      <%= button_to "+", increase_egg_count_user_path(user), method: :patch, class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" %>
     </div>
   </div>
   <div class="mt-3 flex items-center justify-between">
@@ -26,12 +22,8 @@
       🌽玉米 <%= user.corn_count %> 根
     </span>
     <div class="flex gap-x-4">
-      <div class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-        <%= button_to "-", decrease_corn_count_user_path(user), method: :patch %>
-      </div>
-      <div class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-        <%= button_to "+", increase_corn_count_user_path(user), method: :patch %>
-      </div>
+      <%= button_to "-", decrease_corn_count_user_path(user), method: :patch, disabled: user.corn_count == 0, class: "text-white bg-blue-700 hover:bg-blue-800 disabled:bg-blue-400 disabled:cursor-not-allowed focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" %>
+      <%= button_to "+", increase_corn_count_user_path(user), method: :patch, class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" %>
     </div>
   </div>
 </div>
