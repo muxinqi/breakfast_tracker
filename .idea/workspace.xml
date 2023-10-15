@@ -4,19 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bd6c870a-fc6f-432b-9e34-458566b152f5" name="Changes" comment="Integrate TailwindCSS">
-      <change afterPath="$PROJECT_DIR$/Guardfile" afterDir="false" />
+    <list default="true" id="bd6c870a-fc6f-432b-9e34-458566b152f5" name="Changes" comment="Add auto reloading when editing erb files">
+      <change afterPath="$PROJECT_DIR$/app/assets/images/corn.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/assets/images/sam-egg.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/breakfast_tracker.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/breakfast_tracker.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Procfile.dev" beforeDir="false" afterPath="$PROJECT_DIR$/Procfile.dev" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/cooking_records_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/cooking_records_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/users_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/users_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/home/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/home/index.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/users/_user.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/users/_user.html.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/environments/development.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/environments/development.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/importmap.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/importmap.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/javascript/local-time.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="package.json" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -47,6 +59,7 @@
     "WebServerToolWindowFactoryState": "false",
     "dart.analysis.tool.window.visible": "false",
     "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/muxinqi/Developer/muxinqi/breakfast_tracker/app/assets/images",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -57,11 +70,19 @@
     "project.structure.side.proportion": "0.0",
     "ruby.rails.projectView.checked": "true",
     "ruby.structure.view.model.defaults.configured": "true",
-    "settings.editor.selected.configurable": "liveEdit",
+    "settings.editor.selected.configurable": "reference.settings.ide.settings.web.browsers",
     "show.migrate.to.gradle.popup": "false",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/assets/images" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/assets/images" />
+    </key>
+  </component>
   <component name="RunManager" selected="Rails.breakfast_tracker">
     <configuration name="breakfast_tracker" type="RailsRunConfigurationType" factoryName="Rails">
       <module name="breakfast_tracker" />
@@ -156,7 +177,7 @@
       <updated>1697293396648</updated>
       <workItem from="1697293397922" duration="114000" />
       <workItem from="1697293522328" duration="631000" />
-      <workItem from="1697297076187" duration="367000" />
+      <workItem from="1697297076187" duration="17909000" />
     </task>
     <task id="LOCAL-00001" summary="Add `.idea` files">
       <option name="closed" value="true" />
@@ -166,7 +187,15 @@
       <option name="project" value="LOCAL" />
       <updated>1697293690406</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Add auto reloading when editing erb files">
+      <option name="closed" value="true" />
+      <created>1697297476441</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1697297476441</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -185,13 +214,14 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add `.idea` files" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add `.idea` files" />
+    <MESSAGE value="Add auto reloading when editing erb files" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add auto reloading when editing erb files" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
     <select />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/breakfast_tracker@breakfast_tracker.rcov" NAME="breakfast_tracker Coverage Results" MODIFIED="1697294961829" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="breakfast_tracker" />
+    <SUITE FILE_PATH="coverage/breakfast_tracker@breakfast_tracker.rcov" NAME="breakfast_tracker Coverage Results" MODIFIED="1697350267745" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="breakfast_tracker" />
   </component>
 </project>

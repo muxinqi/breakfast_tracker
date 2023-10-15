@@ -1,37 +1,280 @@
-<% if flash[:notice] %>
-  <%= flash[:notice] %>
-<% end %>
+<div class="bg-white">
+  <header class="absolute inset-x-0 top-0 z-50">
+    <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
+      <div class="flex lg:flex-1">🥚🩷🌽</div>
+      <div class="flex lg:hidden">
+        <button id="mobile-menu-open" type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
+          <span class="sr-only">Open main menu</span>
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+        </button>
+      </div>
+      <div class="hidden lg:flex lg:gap-x-12">
+        <a href="#product" class="text-sm font-semibold leading-6 text-gray-900">产品列表</a>
+        <a href="#team" class="text-sm font-semibold leading-6 text-gray-900">团队成员</a>
+        <a href="#history" class="text-sm font-semibold leading-6 text-gray-900">历史成就</a>
+<!--        <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Company</a>-->
+      </div>
+      <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+<!--        <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>-->
+      </div>
+    </nav>
+    <!-- Mobile menu, show/hide based on menu open state. -->
+    <div id="mobile-menu" class="hidden lg:hidden" role="dialog" aria-modal="true">
+      <!-- Background backdrop, show/hide based on slide-over state. -->
+      <div class="fixed inset-0 z-50"></div>
+      <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+        <div class="flex items-center justify-between">
+          <div class="-m-1.5 p-1.5"></div>
+          <button id="mobile-menu-close" type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700">
+            <span class="sr-only">Close menu</span>
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        <div class="mt-6 flow-root">
+          <div class="-my-6 divide-y divide-gray-500/10">
+            <div class="space-y-2 py-6">
+              <a href="#product" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">产品列表</a>
+              <a href="#team" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">团队成员</a>
+              <a href="#history" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">历史成就</a>
+<!--              <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Company</a>-->
+            </div>
+            <div class="py-6">
+<!--              <a href="#" class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Log in</a>-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
 
-<% if @in_progress_cooking_record %>
-  <h1>正在烹饪中</h1>
-  开始时间：<%= time_tag @in_progress_cooking_record.created_at, "data-local": "time-ago" %>
-  <%= button_to "结束烹饪", finish_cooking_record_path(@in_progress_cooking_record), method: :patch %>
-<% else %>
-  <%= button_to "开始烹饪", cooking_records_path, method: :post %>
-<% end %>
-<p>烹饪15分钟后，方可手动结束烹饪。烹饪1小时后，系统会自动结束烹饪记录。</p>
-<p>这里暂不提供“薛定谔的鸡蛋和玉米”，所以烹饪期间无法修改食材数量</p>
+  <script>
+    // 让 mobile menu 可以打开和关闭
+    const mobileMenu = document.getElementById('mobile-menu')
+    const mobileMenuClose = document.getElementById('mobile-menu-close')
+    const mobileMenuOpen = document.getElementById('mobile-menu-open')
+    mobileMenuClose.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden')
+    })
+    mobileMenuOpen.addEventListener('click', () => {
+      mobileMenu.classList.remove('hidden')
+    })
+  </script>
 
-<% @cooking_records.each do |record| %>
-  <p><%= record.operator.name %> <%= time_tag record.created_at, "data-local": "time-ago" %></p>
-<% end %>
+  <div class="relative isolate px-6 pt-14 lg:px-8">
+    <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
+      <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+    </div>
+    <div class="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
+      <div class="hidden sm:mb-8 sm:flex sm:justify-center">
+        <div class="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
+          Announcing our next round of funding. <a href="#" class="font-semibold text-indigo-600"><span class="absolute inset-0" aria-hidden="true"></span>Read more <span aria-hidden="true">&rarr;</span></a>
+        </div>
+      </div>
+      <div class="text-center">
+        <div class="flex justify-center text-2xl font-semibold text-gray-600">
+          今天一共要煮
+        </div>
+        <div class="mt-6 flex flex-wrap md:flex-nowrap gap-x-14 gap-y-4 justify-center text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+          <div>
+            <%= turbo_stream_from "total-eggs" %>
+            <%= render 'total_eggs', total_eggs: @total_eggs %>
+          </div>
+          <div>
+            <%= turbo_stream_from "total-corn" %>
+            <%= render 'total_corn', total_corn: @total_corn %>
+          </div>
+        </div>
+        <% if @in_progress_cooking_record %>
+        <p class="mt-6 mx-10 text-lg leading-8 text-gray-600">
+          <%= "🔥" * 30 %><br>
+          正在烹饪中<br>
+          开始时间：<%= time_tag @in_progress_cooking_record.created_at, "data-local": "time-ago" %>
+        </p>
+        <% end %>
+        <div class="mt-10 flex items-center justify-center gap-x-6">
+          <% if @in_progress_cooking_record %>
+            <div class="rounded-md bg-red-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+              <%= button_to "结束烹饪", finish_cooking_record_path(@in_progress_cooking_record), method: :patch %>
+            </div>
+          <% else %>
+            <div class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+              <%= button_to "开始烹饪", cooking_records_path, method: :post %>
+            </div>
+          <% end %>
+<!--          <a href="#" class="text-sm font-semibold leading-6 text-gray-900">-->
+<!--            Learn more <span aria-hidden="true">→</span>-->
+<!--          </a>-->
+        </div>
+      </div>
+    </div>
+    <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]" aria-hidden="true">
+      <div class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+    </div>
+  </div>
 
-<h1>今天一共要煮</h1>
-<h2>
-  <%= turbo_stream_from "total-eggs" %>
-  <%= render 'total_eggs', total_eggs: @total_eggs %>
-</h2>
-<h2>
-  <%= turbo_stream_from "total-corn" %>
-  <%= render 'total_corn', total_corn: @total_corn %>
-</h2>
+  <% if flash[:notice] %>
+    <%= flash[:notice] %>
+  <% end %>
 
-<br>
+  <div id="accordion-arrow-icon" class="mx-auto max-w-7xl gap-x-8 gap-y-20 px-6 lg:px-8">
+    <h2 id="accordion-arrow-icon-heading-1">
+      <button type="button" class="flex items-center justify-between w-full p-5 font-medium text-left text-gray-900 bg-gray-100 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800" data-accordion-target="#accordion-arrow-icon-body-1" aria-expanded="true" aria-controls="accordion-arrow-icon-body-1">
+        <span>温馨提示</span>
+      </button>
+    </h2>
+    <div id="accordion-arrow-icon-body-1" aria-labelledby="accordion-arrow-icon-heading-1">
+      <div class="p-5 rounded-b-xl border border-b-1 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+        <p class="mb-2 text-gray-500 dark:text-gray-400">
+          1. 烹饪15分钟后，方可手动结束烹饪。烹饪1小时后，系统会自动结束烹饪记录。
+        </p>
+        <p class="text-gray-500 dark:text-gray-400">
+          2. 这里暂不提供“薛定谔的鸡蛋和玉米”，所以烹饪期间无法修改食材数量
+        </p>
+      </div>
+    </div>
+  </div>
 
-<h2>用户列表</h2>
-<%= turbo_stream_from "users" %>
-<%= render @users %>
+  <div id="product" class="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+    <h2 class="text-3xl font-bold tracking-tight text-gray-900">产品</h2>
 
-<br>
+    <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+      <div class="group relative">
+        <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+          <%= image_tag "sam-egg.jpg", class: "h-full w-full object-cover object-center lg:h-full lg:w-full" %>
+        </div>
+        <div class="mt-4 flex justify-between">
+          <div>
+            <h3 class="text-sm text-gray-700">
+              <a href="#">
+                <span aria-hidden="true" class="absolute inset-0"></span>
+                鸡蛋
+              </a>
+            </h3>
+            <p class="mt-1 text-sm text-gray-500">
+              山姆会员店 大码蛋
+            </p>
+          </div>
+          <p class="text-sm font-medium text-gray-900">
+            ¥1
+          </p>
+        </div>
+      </div>
 
-<%= link_to "添加新用户", new_user_path %>
+      <div class="group relative">
+        <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+          <%= image_tag "corn.jpg", class: "h-full w-full object-cover object-center lg:h-full lg:w-full" %>
+        </div>
+        <div class="mt-4 flex justify-between">
+          <div>
+            <h3 class="text-sm text-gray-700">
+              <a href="#">
+                <span aria-hidden="true" class="absolute inset-0"></span>
+                玉米
+              </a>
+            </h3>
+            <p class="mt-1 text-sm text-gray-500">
+              白黄均有
+            </p>
+          </div>
+          <p class="text-sm font-medium text-gray-900">
+            ¥2
+          </p>
+        </div>
+      </div>
+
+      <!-- More products... -->
+    </div>
+  </div>
+
+  <div class="bg-white py-24 sm:py-32">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <dl class="grid grid-cols-1 gap-x-8 gap-y-16 text-center lg:grid-cols-3">
+        <div class="mx-auto flex max-w-xs flex-col gap-y-4">
+          <dt class="text-base leading-7 text-gray-600">Transactions every 24 hours</dt>
+          <dd class="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">44 million</dd>
+        </div>
+        <div class="mx-auto flex max-w-xs flex-col gap-y-4">
+          <dt class="text-base leading-7 text-gray-600">Assets under holding</dt>
+          <dd class="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">$119 trillion</dd>
+        </div>
+        <div class="mx-auto flex max-w-xs flex-col gap-y-4">
+          <dt class="text-base leading-7 text-gray-600">New users annually</dt>
+          <dd class="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">46,000</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+
+  <div id="team" class="bg-white pt-24">
+    <div class="mx-auto grid max-w-7xl gap-x-8 gap-y-20 px-6 lg:px-8 xl:grid-cols-3">
+      <div class="max-w-2xl">
+        <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+          团队成员
+        </h2>
+        <p class="mt-6 text-lg leading-8 text-gray-600">
+          这里是团队中每一个可爱的人
+        </p>
+      </div>
+      <%= turbo_stream_from "users" %>
+      <ul role="list" class="grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2">
+        <% @users.each do |user| %>
+          <li><%= render user %></li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="py-24 flex justify-center">
+      <button class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800">
+          <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+              <%= link_to "添加新用户", new_user_path %>
+          </span>
+      </button>
+    </div>
+  </div>
+
+  <div id="history" class="bg-white pt-24 px-6 mx-auto max-w-7xl grid gap-x-8 gap-y-8 md:grid-cols-3">
+    <h2 class="max-w-2xl text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+      历史成就
+    </h2>
+    <ol class="relative border-l border-gray-200 dark:border-gray-700 md:col-span-2">
+      <% @cooking_records.each do |cooking| %>
+        <li class="mb-10 ml-4">
+          <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
+          <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
+            <%= time_tag cooking.created_at, "data-local": "time-ago" %>
+          </time>
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+            🥚鸡蛋 <%= cooking.egg_count %> 个，🌽玉米 <%= cooking.corn_count %> 根
+          </h3>
+          <div class="flex mb-5 -space-x-3">
+            <% 5.times.each do %>
+              <img class="w-10 h-10 border-2 border-white rounded-full dark:border-gray-800" src="https://ui-avatars.com/api/?name=John+Doe" alt="">
+            <% end %>
+          </div>
+<!--          <a href="#" class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-200 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700">-->
+<!--            Learn more <svg class="w-3 h-3 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">-->
+<!--              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>-->
+<!--            </svg>-->
+<!--          </a>-->
+        </li>
+      <% end %>
+    </ol>
+  </div>
+
+  <div class="bg-white py-24 sm:py-32">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <h2 class="text-center text-lg font-semibold leading-8 text-gray-900">Trusted by the world’s most innovative teams</h2>
+      <div class="mx-auto mt-10 grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5">
+        <img class="col-span-2 max-h-12 w-full object-contain lg:col-span-1" src="https://tailwindui.com/img/logos/158x48/transistor-logo-gray-900.svg" alt="Transistor" width="158" height="48">
+        <img class="col-span-2 max-h-12 w-full object-contain lg:col-span-1" src="https://tailwindui.com/img/logos/158x48/reform-logo-gray-900.svg" alt="Reform" width="158" height="48">
+        <img class="col-span-2 max-h-12 w-full object-contain lg:col-span-1" src="https://tailwindui.com/img/logos/158x48/tuple-logo-gray-900.svg" alt="Tuple" width="158" height="48">
+        <img class="col-span-2 max-h-12 w-full object-contain sm:col-start-2 lg:col-span-1" src="https://tailwindui.com/img/logos/158x48/savvycal-logo-gray-900.svg" alt="SavvyCal" width="158" height="48">
+        <img class="col-span-2 col-start-2 max-h-12 w-full object-contain sm:col-start-auto lg:col-span-1" src="https://tailwindui.com/img/logos/158x48/statamic-logo-gray-900.svg" alt="Statamic" width="158" height="48">
+      </div>
+    </div>
+  </div>
+
+</div>
