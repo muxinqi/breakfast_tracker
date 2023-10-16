@@ -3,7 +3,8 @@ class CookingRecordsController < ApplicationController
     # FIXME: Mock User ID
     mock_user_id = 1
 
-    unless CookingRecord.last.finished?
+    last_cooking_record = CookingRecord.last
+    unless last_cooking_record.nil? or last_cooking_record.finished?
       redirect_to root_path, status: :unprocessable_entity, warning: '当前有未结束的烹饪，请刷新页面查看最新状态。'
       return
     end

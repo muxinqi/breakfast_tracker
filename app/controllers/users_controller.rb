@@ -70,7 +70,8 @@ class UsersController < ApplicationController
   end
 
   def ensure_latest_cooking_finished
-    unless CookingRecord.last.finished?
+    last_cooking_record = CookingRecord.last
+    unless last_cooking_record.nil? or last_cooking_record.finished?
       redirect_to root_path, status: :temporary_redirect, warning: "当前烹饪还未完成，请烹饪结束后再试～"
     end
   end
