@@ -10,9 +10,9 @@ class CookingRecordsController < ApplicationController
     end
 
     success = ActiveRecord::Base.transaction do
-      cooking = CookingRecord.create!(operator_id: mock_user_id, egg_count: User.total_eggs, corn_count: User.total_corn)
-      User.all.each do |user|
-        Meal.create!(diner_id: user.id, cooking_id: cooking.id, egg_count: user.egg_count, corn_count: user.corn_count)
+      cooking = CookingRecord.create!(operator_id: mock_user_id)
+      User.all.where("egg_count > 0 OR corn_count > 0 OR sweet_potato_count > 0").each do |user|
+        Meal.create!(diner_id: user.id, cooking_id: cooking.id, egg_count: user.egg_count, corn_count: user.corn_count, sweet_potato_count: user.sweet_potato_count)
       end
     end
     if success
