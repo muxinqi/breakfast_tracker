@@ -2,7 +2,7 @@ class User < ApplicationRecord
   has_many :meals, foreign_key: :diner_id, dependent: :destroy
 
   validates :name, presence: true, uniqueness: true
-  validates :egg_count, :corn_count, numericality: { greater_than_or_equal_to: 0}
+  validates :egg_count, :corn_count, :sweet_potato_count, numericality: { greater_than_or_equal_to: 0}
 
   broadcasts_to ->(user) { "users" }, inserts_by: :prepend
 
