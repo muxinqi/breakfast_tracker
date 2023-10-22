@@ -78,20 +78,10 @@
         <div class="flex justify-center text-2xl font-semibold text-gray-600">
           今天一共要煮
         </div>
-        <div class="mt-6 flex flex-wrap md:flex-nowrap gap-x-14 gap-y-4 justify-center text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-          <div>
-            <%= turbo_stream_from "total-eggs" %>
-            <%= render 'total_eggs', total_eggs: @total_eggs %>
-          </div>
-          <div>
-            <%= turbo_stream_from "total-corn" %>
-            <%= render 'total_corn', total_corn: @total_corn %>
-          </div>
-          <div>
-            <%= turbo_stream_from "total-sweet-potato" %>
-            <%= render 'total_sweet_potato', total_sweet_potato: @total_sweet_potato %>
-          </div>
-        </div>
+
+        <%= turbo_stream_from "total-of-today" %>
+        <%= render "total_of_today", data: @total_of_today %>
+
         <% if @in_progress_cooking_record %>
         <p class="mt-6 mx-10 text-lg leading-8 text-gray-600">
           <%= "🔥" * 30 %><br>

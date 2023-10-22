@@ -1,9 +1,7 @@
 class HomeController < ApplicationController
   def index
     @users = User.includes(:meals).all
-    @total_eggs = User.total_eggs
-    @total_corn = User.total_corn
-    @total_sweet_potato = User.total_sweet_potato
+    @total_of_today = User.total_of_today
     last_cooking_record = CookingRecord.last
     @in_progress_cooking_record = if last_cooking_record.nil? || last_cooking_record.finished?
                                     nil
