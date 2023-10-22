@@ -9,7 +9,24 @@ on:
       - 'v*'
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundle-cache: true
+
+      - name: Run Tests
+        run: bundle exec rails test
+
   docker:
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
