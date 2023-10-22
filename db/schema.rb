@@ -10,13 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_10_15_144016) do
+ActiveRecord::Schema[7.1].define(version: 2023_10_22_052254) do
   create_table "cooking_records", force: :cascade do |t|
     t.integer "operator_id", null: false
     t.integer "terminator_id"
     t.datetime "finished_at"
-    t.integer "egg_count", null: false
-    t.integer "corn_count", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["operator_id"], name: "index_cooking_records_on_operator_id"
@@ -30,6 +28,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_15_144016) do
     t.integer "corn_count", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "sweet_potato_count", default: 0, null: false
     t.index ["cooking_id"], name: "index_meals_on_cooking_id"
     t.index ["diner_id"], name: "index_meals_on_diner_id"
   end
@@ -40,6 +39,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_15_144016) do
     t.integer "corn_count", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "sweet_potato_count", default: 0, null: false
   end
 
   add_foreign_key "cooking_records", "users", column: "operator_id"

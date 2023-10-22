@@ -63,6 +63,30 @@ class UsersController < ApplicationController
     end
   end
 
+  def increase_sweet_potato_count
+    @user = User.find(params[:id])
+    respond_to do |format|
+      if @user.update(sweet_potato_count: @user.sweet_potato_count + 1)
+        format.html { redirect_to root_path }
+        format.turbo_stream
+      else
+        format.html { redirect_to root_path, error: @user.errors.full_messages.to_sentence }
+      end
+    end
+  end
+
+  def decrease_sweet_potato_count
+    @user = User.find(params[:id])
+    respond_to do |format|
+      if @user.update(sweet_potato_count: @user.sweet_potato_count - 1)
+        format.html { redirect_to root_path }
+        format.turbo_stream
+      else
+        format.html { redirect_to root_path, error: @user.errors.full_messages.to_sentence }
+      end
+    end
+  end
+
   private
 
   def user_params

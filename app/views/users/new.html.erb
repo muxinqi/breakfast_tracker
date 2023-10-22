@@ -8,8 +8,8 @@
     </h2>
   </div>
   <%= form_with model: @user, url: users_path, class: "mx-auto mt-16 max-w-xl sm:mt-20" do |form| %>
-    <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
-      <div class="sm:col-span-2">
+    <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-3">
+      <div class="sm:col-span-3">
         <%= form.label :name, "昵称", class: "block text-sm font-semibold leading-6 text-gray-900" %>
         <div class="mt-2.5">
           <%= form.text_field :name, placeholder: "请输入昵称", class: "block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
@@ -25,6 +25,12 @@
         <%= form.label :corn_count, "🌽玉米", class: "block text-sm font-semibold leading-6 text-gray-900" %>
         <div class="mt-2.5">
           <%= form.number_field :corn_count, placeholder: "0", class: "block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+        </div>
+      </div>
+      <div>
+        <%= form.label :sweet_potato_count, "🍠红薯", class: "block text-sm font-semibold leading-6 text-gray-900" %>
+        <div class="mt-2.5">
+          <%= form.number_field :sweet_potato_count, placeholder: "0", class: "block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
         </div>
       </div>
     </div>

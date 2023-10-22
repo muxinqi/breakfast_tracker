@@ -11,6 +11,8 @@ Rails.application.routes.draw do
       patch :decrease_egg_count
       patch :increase_corn_count
       patch :decrease_corn_count
+      patch :increase_sweet_potato_count
+      patch :decrease_sweet_potato_count
     end
   end
 
