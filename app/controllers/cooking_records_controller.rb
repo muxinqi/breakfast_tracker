@@ -1,8 +1,5 @@
 class CookingRecordsController < ApplicationController
   def create
-    # FIXME: Mock User ID
-    mock_user_id = 1
-
     last_cooking_record = CookingRecord.last
     unless last_cooking_record.nil? or last_cooking_record.finished?
       redirect_to root_path, status: :unprocessable_entity, warning: '当前有未结束的烹饪，请刷新页面查看最新状态。'
@@ -10,7 +7,7 @@ class CookingRecordsController < ApplicationController
     end
 
     success = ActiveRecord::Base.transaction do
-      cooking = CookingRecord.create!(operator_id: mock_user_id)
+      cooking = CookingRecord.create!
       User.all.where("egg_count > 0 OR corn_count > 0 OR sweet_potato_count > 0").each do |user|
         Meal.create!(diner_id: user.id, cooking_id: cooking.id, egg_count: user.egg_count, corn_count: user.corn_count, sweet_potato_count: user.sweet_potato_count)
       end
@@ -23,9 +20,6 @@ class CookingRecordsController < ApplicationController
   end
 
   def finish
-    # FIXME: Mock User ID
-    mock_user_id = 1
-
     # 若烹饪已结束，则提前退出
     cooking_record = CookingRecord.find(params[:id])
     if cooking_record.finished?
@@ -39,7 +33,7 @@ class CookingRecordsController < ApplicationController
       return
     end
 
-    if cooking_record.update(finished_at: Time.now, terminator_id: mock_user_id)
+    if cooking_record.update(finished_at: Time.now)
       redirect_to root_path, success: '操作成功，本次烹饪已添加至历史成就。'
     else
       redirect_to root_path, status: :unprocessable_entity, error: '操作失败，请稍后再试。'
