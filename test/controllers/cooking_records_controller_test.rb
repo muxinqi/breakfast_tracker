@@ -2,12 +2,12 @@ require "test_helper"
 
 class CookingRecordsControllerTest < ActionDispatch::IntegrationTest
   test "should get create" do
-    get cooking_records_create_url
-    assert_response :success
+    post cooking_records_url
+    assert_redirected_to root_url
   end
 
   test "should get finish" do
-    get cooking_records_finish_url
-    assert_response :success
+    patch finish_cooking_record_url cooking_records(:one)
+    assert_redirected_to root_url
   end
 end

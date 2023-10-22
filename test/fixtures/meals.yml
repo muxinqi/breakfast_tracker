@@ -1,13 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  user: one
-  cooking: one
+  diner: one
+  cooking_id: 1
   egg_count: 1
   corn_count: 1
 
 two:
-  user: two
-  cooking: two
+  diner: two
+  cooking_id: 2
   egg_count: 1
   corn_count: 1
