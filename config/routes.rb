@@ -21,4 +21,7 @@ Rails.application.routes.draw do
       patch :finish
     end
   end
+
+  # http://localhost:3000/analytics
+  mount ActiveAnalytics::Engine => "analytics"
 end

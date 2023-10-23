@@ -78,3 +78,8 @@ gem "tailwindcss-rails", "~> 2.0"
 
 gem "sentry-ruby"
 gem "sentry-rails"
+
+# First-party, privacy-focused traffic analytics for Ruby on Rails applications.
+gem 'active_analytics'
+# Ruby gem to detect bots and crawlers via the user agent
+gem 'crawler_detect'
