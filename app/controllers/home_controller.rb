@@ -13,5 +13,6 @@ class HomeController < ApplicationController
     finished_cooking_records = CookingRecord.includes(:meals).where("finished_at < ?", Time.now)
     @total_eaten_eggs = finished_cooking_records.sum { |cr| cr.meals.sum(:egg_count) }
     @total_eaten_corn = finished_cooking_records.sum { |cr| cr.meals.sum(:corn_count) }
+    @total_eaten_sweet_potato = finished_cooking_records.sum { |cr| cr.meals.sum(:sweet_potato_count) }
   end
 end

@@ -149,7 +149,7 @@
             </p>
           </div>
           <p class="text-sm font-medium text-gray-900">
-            ¥1
+            ¥1/颗
           </p>
         </div>
       </div>
@@ -171,7 +171,7 @@
             </p>
           </div>
           <p class="text-sm font-medium text-gray-900">
-            ¥3
+            ¥3/根
           </p>
         </div>
       </div>
@@ -193,7 +193,7 @@
             </p>
           </div>
           <p class="text-sm font-medium text-gray-900">
-            ¥?
+            ¥3/份
           </p>
         </div>
       </div>
@@ -226,7 +226,7 @@
             年度营收
           </dt>
           <dd class="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
-            ¥<%= @total_eaten_eggs * 1 + @total_eaten_corn * 3 %>
+            ¥<%= @total_eaten_eggs * 1 + @total_eaten_corn * 3 + @total_eaten_sweet_potato * 3 %>
           </dd>
         </div>
       </dl>
@@ -276,7 +276,7 @@
             <%= time_tag cooking.created_at, "data-local": "time-ago" %>
           </time>
           <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-            🥚鸡蛋 <%= cooking.egg_count %> 个，🌽玉米 <%= cooking.corn_count %> 根，🍠红薯 <%= cooking.sweet_potato_count %> 根
+            🥚鸡蛋 <%= cooking.egg_count %> 个，🌽玉米 <%= cooking.corn_count %> 根，🍠红薯 <%= cooking.sweet_potato_count %> 份
           </h3>
           <div class="flex mb-5 -space-x-3">
             <% cooking.meals.each do |meal| %>
