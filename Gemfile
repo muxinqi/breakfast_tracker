@@ -83,3 +83,6 @@ gem "sentry-rails"
 gem 'active_analytics'
 # Ruby gem to detect bots and crawlers via the user agent
 gem 'crawler_detect'
+
+# The safe Markdown parser, reloaded.
+gem 'redcarpet'

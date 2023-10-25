@@ -22,6 +22,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get "changelog" => "home#changelog"
+
   # http://localhost:3000/analytics
   mount ActiveAnalytics::Engine => "analytics"
 end

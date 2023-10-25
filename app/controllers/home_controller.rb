@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+  layout "changelog", only: [:changelog]
+
   def index
     @users = User.includes(:meals).all
     @total_of_today = User.total_of_today
@@ -14,5 +16,8 @@ class HomeController < ApplicationController
     @total_eaten_eggs = finished_cooking_records.sum { |cr| cr.meals.sum(:egg_count) }
     @total_eaten_corn = finished_cooking_records.sum { |cr| cr.meals.sum(:corn_count) }
     @total_eaten_sweet_potato = finished_cooking_records.sum { |cr| cr.meals.sum(:sweet_potato_count) }
+  end
+
+  def changelog
   end
 end
