@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [Unreleased]
+
+### 修复
+
+- 部分文本在深色模式下不可见的问题
+
+---
+
 ## [1.3.0] - 2023-10-25
 
 ### 新增
@@ -65,6 +73,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 用户列表 & 用户添加功能
   - 记录和修改每个用户的「🥚鸡蛋」和「🥚玉米」的需求量
 
+[unreleased]: https://github.com/muxinqi/breakfast_tracker/compare/v1.3.0...HEAD
 [1.3.0]: https://github.com/muxinqi/breakfast_tracker/compare/v1.2.1...v1.3.0
 [1.2.1]: https://github.com/muxinqi/breakfast_tracker/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/muxinqi/breakfast_tracker/compare/v1.1.0...v1.2.0
