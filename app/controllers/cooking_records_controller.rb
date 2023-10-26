@@ -6,16 +6,20 @@ class CookingRecordsController < ApplicationController
       return
     end
 
+    finished_at = Rails.env.development? ? 10.seconds.from_now : 1.hour.from_now
     success = ActiveRecord::Base.transaction do
-      cooking = CookingRecord.create!
+      cooking = CookingRecord.create!(finished_at: finished_at)
       User.all.where("egg_count > 0 OR corn_count > 0 OR sweet_potato_count > 0").each do |user|
         Meal.create!(diner_id: user.id, cooking_id: cooking.id, egg_count: user.egg_count, corn_count: user.corn_count, sweet_potato_count: user.sweet_potato_count)
       end
     end
-    if success
-      redirect_to root_path, success: '操作成功，开始烹饪啦。'
-    else
-      redirect_to root_path, status: :unprocessable_entity, error: '操作失败，请稍后再试。'
+    respond_to do |format|
+      if success
+        format.html { redirect_to root_path, success: '操作成功，开始烹饪啦。' }
+        format.turbo_stream
+      else
+        format.html { redirect_to root_path, status: :unprocessable_entity, error: '操作失败，请稍后再试。' }
+      end
     end
   end
 

@@ -4,12 +4,7 @@ class HomeController < ApplicationController
   def index
     @users = User.includes(:meals).all
     @total_of_today = User.total_of_today
-    last_cooking_record = CookingRecord.last
-    @in_progress_cooking_record = if last_cooking_record.nil? || last_cooking_record.finished?
-                                    nil
-                                  else
-                                    last_cooking_record
-                                  end
+    @in_progress_cooking_record = CookingRecord.in_progress_cooking_record
     @cooking_records = CookingRecord.includes(:meals => :diner).order(created_at: :desc).limit(10)
     @total_eaten_meal = Meal.count
     finished_cooking_records = CookingRecord.includes(:meals).where("finished_at < ?", Time.now)

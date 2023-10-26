@@ -19,27 +19,8 @@
         <%= turbo_stream_from "total-of-today" %>
         <%= render "total_of_today", data: @total_of_today %>
 
-        <% if @in_progress_cooking_record %>
-        <p class="mt-6 mx-10 text-lg leading-8 text-gray-600">
-          <%= "🔥" * 30 %><br>
-          正在烹饪中<br>
-          开始时间：<%= time_tag @in_progress_cooking_record.created_at, "data-local": "time-ago" %>
-        </p>
-        <% end %>
-        <div class="mt-10 flex items-center justify-center gap-x-6">
-          <% if @in_progress_cooking_record %>
-            <div class="rounded-md bg-red-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-              <%= button_to "结束烹饪", finish_cooking_record_path(@in_progress_cooking_record), method: :patch %>
-            </div>
-          <% else %>
-            <div class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-              <%= button_to "开始烹饪", cooking_records_path, method: :post %>
-            </div>
-          <% end %>
-<!--          <a href="#" class="text-sm font-semibold leading-6 text-gray-900">-->
-<!--            Learn more <span aria-hidden="true">→</span>-->
-<!--          </a>-->
-        </div>
+        <%= turbo_stream_from "cooking-control-panel" %>
+        <%= render "cooking_control_panel", in_progress_cooking_record: @in_progress_cooking_record %>
       </div>
     </div>
     <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]" aria-hidden="true">
