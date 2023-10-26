@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### 新增
 
+- 多端实时同步最新烹饪状态
 - 将页面添加至 iOS 首页时，展示正确的图标
 
 ### 修复

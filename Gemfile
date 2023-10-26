@@ -86,3 +86,6 @@ gem 'crawler_detect'
 
 # The safe Markdown parser, reloaded.
 gem 'redcarpet'
+
+# Simple, efficient background processing for Ruby
+gem "sidekiq", "~> 7.1"
