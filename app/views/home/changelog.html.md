@@ -11,6 +11,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.4.1] - 2023-10-28
+
+### 修复
+
+- 修改食物数量时，没有实时更新的问题
+
+---
+
 ## [1.4.0] - 2023-10-27
 
 ### 新增
@@ -82,7 +90,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 用户列表 & 用户添加功能
   - 记录和修改每个用户的「🥚鸡蛋」和「🥚玉米」的需求量
 
-[unreleased]: https://github.com/muxinqi/breakfast_tracker/compare/v1.4.0...HEAD
+[unreleased]: https://github.com/muxinqi/breakfast_tracker/compare/v1.4.1...HEAD
+[1.4.1]: https://github.com/muxinqi/breakfast_tracker/compare/v1.4.0...v1.4.1
 [1.4.0]: https://github.com/muxinqi/breakfast_tracker/compare/v1.3.0...v1.4.0
 [1.3.0]: https://github.com/muxinqi/breakfast_tracker/compare/v1.2.1...v1.3.0
 [1.2.1]: https://github.com/muxinqi/breakfast_tracker/compare/v1.2.0...v1.2.1
