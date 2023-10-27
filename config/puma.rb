@@ -33,3 +33,26 @@ pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
 
 # Allow puma to be restarted by `bin/rails restart` command.
 plugin :tmp_restart
+
+# Sidekiq Embedding START>>>
+workers 2
+
+# preloading the application is necessary to ensure
+# the configuration in your initializer runs before
+# the boot callback below.
+preload_app!
+
+x = nil
+on_worker_boot do
+  x = Sidekiq.configure_embed do |config|
+    # config.logger.level = Logger::DEBUG
+    config.queues = %w[critical default low]
+    config.concurrency = 2
+  end
+  x.run
+end
+
+on_worker_shutdown do
+  x&.stop
+end
+# Sidekiq Embedding END<<<
