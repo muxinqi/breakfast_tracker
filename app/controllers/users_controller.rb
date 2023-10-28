@@ -87,6 +87,16 @@ class UsersController < ApplicationController
     end
   end
 
+  def food_consumption
+    user = User.find(params[:id])
+    cooking_records_group_by_day = CookingRecord.joins(:meals).where("meals.diner_id = ?", user.id).group_by_day(:created_at, range: 30.days.ago.midnight..Time.now.midnight)
+    render json: [
+      { name: "鸡蛋", color: "#F1DFC9", data: cooking_records_group_by_day.sum("meals.egg_count") },
+      { name: "玉米", color: "#F4DC4A",data: cooking_records_group_by_day.sum("meals.corn_count") },
+      { name: "红薯", color: "#BF6666",data: cooking_records_group_by_day.sum("meals.sweet_potato_count") }
+    ]
+  end
+
   private
 
   def user_params

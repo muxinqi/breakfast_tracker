@@ -15,4 +15,13 @@ class HomeController < ApplicationController
 
   def changelog
   end
+
+  def food_consumption
+    cooking_records_group_by_day = CookingRecord.joins(:meals).group_by_day(:created_at, range: 30.days.ago.midnight..Time.now.midnight)
+    render json: [
+      { name: "鸡蛋", color: "#F1DFC9", data: cooking_records_group_by_day.sum("meals.egg_count") },
+      { name: "玉米", color: "#F4DC4A",data: cooking_records_group_by_day.sum("meals.corn_count") },
+      { name: "红薯", color: "#BF6666",data: cooking_records_group_by_day.sum("meals.sweet_potato_count") }
+    ]
+  end
 end

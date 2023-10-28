@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       patch :decrease_corn_count
       patch :increase_sweet_potato_count
       patch :decrease_sweet_potato_count
+      get :food_consumption
     end
   end
 
@@ -23,6 +24,7 @@ Rails.application.routes.draw do
   end
 
   get "changelog" => "home#changelog"
+  get "food_consumption" => "home#food_consumption"
 
   # http://localhost:3000/analytics
   mount ActiveAnalytics::Engine => "analytics"

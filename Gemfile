@@ -89,3 +89,9 @@ gem 'redcarpet'
 
 # Simple, efficient background processing for Ruby
 gem "sidekiq", "~> 7.1"
+
+# Create beautiful JavaScript charts with one line of Ruby
+gem "chartkick", "~> 5.0"
+
+# The simplest way to group temporal data
+gem "groupdate", "~> 6.4"
