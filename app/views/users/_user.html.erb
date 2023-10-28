@@ -3,7 +3,7 @@
     <%= user.name %>
   </div>
   <p class="mb-6 font-normal text-gray-500 dark:text-gray-400">
-    早餐一共吃了 <%= user.meals.sum(:egg_count) %> 个鸡蛋，<%= user.meals.sum(:corn_count) %> 根玉米
+    早餐一共吃了 <%= user.meals.sum(:egg_count) %> 个鸡蛋，<%= user.meals.sum(:corn_count) %> 根玉米，<%= user.meals.sum(:sweet_potato_count) %> 份红薯。
   </p>
   <div class="inline-flex items-center text-gray-500">
     今天想吃

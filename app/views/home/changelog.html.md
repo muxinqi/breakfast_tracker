@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### 修复
+
+- 在用户列表中展示🍠红薯的消耗总数量
+
 ---
 
 ## [1.4.2] - 2023-10-28
