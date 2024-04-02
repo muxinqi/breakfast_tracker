@@ -38,7 +38,7 @@ version: '3'
 
 services:
   breakfast_tracker:
-    image: ghcr.io/mianbaoduo/breakfast-tracker:1
+    image: ghcr.io/muxinqi/breakfast-tracker:1
     container_name: breakfast_tracker
     restart: always
     env_file:
