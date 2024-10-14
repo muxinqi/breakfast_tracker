@@ -2,7 +2,7 @@ class CookingRecordsController < ApplicationController
   def create
     last_cooking_record = CookingRecord.last
     unless last_cooking_record.nil? or last_cooking_record.finished?
-      redirect_to root_path, status: :unprocessable_entity, warning: '当前有未结束的烹饪，请刷新页面查看最新状态。'
+      redirect_to root_path, status: :unprocessable_entity, warning: "当前有未结束的烹饪，请刷新页面查看最新状态。"
       return
     end
 
@@ -16,10 +16,10 @@ class CookingRecordsController < ApplicationController
     respond_to do |format|
       if success
         UpdateCookingControlPanelJob.set(wait_until: finished_at + 1.seconds).perform_later
-        format.html { redirect_to root_path, success: '操作成功，开始烹饪啦。' }
+        format.html { redirect_to root_path, success: "操作成功，开始烹饪啦。" }
         format.turbo_stream
       else
-        format.html { redirect_to root_path, status: :unprocessable_entity, error: '操作失败，请稍后再试。' }
+        format.html { redirect_to root_path, status: :unprocessable_entity, error: "操作失败，请稍后再试。" }
       end
     end
   end
@@ -28,22 +28,22 @@ class CookingRecordsController < ApplicationController
     # 若烹饪已结束，则提前退出
     cooking_record = CookingRecord.find(params[:id])
     if cooking_record.finished?
-      redirect_to root_path, status: :temporary_redirect, warning: '烹饪已结束，请刷新页面查看最新状态。'
+      redirect_to root_path, status: :temporary_redirect, warning: "烹饪已结束，请刷新页面查看最新状态。"
       return
     end
 
     # 烹饪开始后的15分钟，不可以手动结束。
     if cooking_record.created_at > (Rails.env.development? ? 5.seconds.ago : 15.minutes.ago)
-      redirect_to root_path, status: :temporary_redirect, warning: '烹饪开始后的15分钟，不可以手动结束。'
+      redirect_to root_path, status: :temporary_redirect, warning: "烹饪开始后的15分钟，不可以手动结束。"
       return
     end
 
     respond_to do |format|
       if cooking_record.update(finished_at: Time.now)
-        format.html { redirect_to root_path, success: '操作成功，本次烹饪已添加至历史成就。' }
+        format.html { redirect_to root_path, success: "操作成功，本次烹饪已添加至历史成就。" }
         format.turbo_stream
       else
-        format.html { redirect_to root_path, status: :unprocessable_entity, error: '操作失败，请稍后再试。' }
+        format.html { redirect_to root_path, status: :unprocessable_entity, error: "操作失败，请稍后再试。" }
       end
     end
   end

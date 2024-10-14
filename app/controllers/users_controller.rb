@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :ensure_latest_cooking_finished, only: [:new, :create, :increase_egg_count, :decrease_egg_count, :increase_corn_count, :decrease_corn_count]
+  before_action :ensure_latest_cooking_finished, only: [ :new, :create, :increase_egg_count, :decrease_egg_count, :increase_corn_count, :decrease_corn_count ]
 
   def new
     @user = User.new
@@ -92,8 +92,8 @@ class UsersController < ApplicationController
     cooking_records_group_by_day = CookingRecord.joins(:meals).where("meals.diner_id = ?", user.id).group_by_day(:created_at, range: 30.days.ago.midnight..Time.now.midnight)
     render json: [
       { name: "鸡蛋", color: "#F1DFC9", data: cooking_records_group_by_day.sum("meals.egg_count") },
-      { name: "玉米", color: "#F4DC4A",data: cooking_records_group_by_day.sum("meals.corn_count") },
-      { name: "红薯", color: "#BF6666",data: cooking_records_group_by_day.sum("meals.sweet_potato_count") }
+      { name: "玉米", color: "#F4DC4A", data: cooking_records_group_by_day.sum("meals.corn_count") },
+      { name: "红薯", color: "#BF6666", data: cooking_records_group_by_day.sum("meals.sweet_potato_count") }
     ]
   end
 
