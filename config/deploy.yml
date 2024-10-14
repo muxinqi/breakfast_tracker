@@ -1,0 +1,55 @@
+# Name of your application. Used to uniquely configure containers.
+service: breakfast_tracker
+
+image: ghcr.io/muxinqi/breakfast_tracker
+
+servers:
+  web:
+    - do-toronto
+
+# Enable SSL auto certification via Let's Encrypt (and allow for multiple apps on one server).
+# If using something like Cloudflare, it is recommended to set encryption mode 
+# in Cloudflare's SSL/TLS setting to "Full" to enable end-to-end encryption. 
+proxy: 
+  ssl: true
+  host: breakfast-tracker.mxq.im
+  app_port: 3000
+
+registry:
+  server: ghcr.io
+  username: muxinqi
+  password:
+    - KAMAL_REGISTRY_PASSWORD
+
+builder:
+  arch: amd64
+
+# Inject ENV variables into containers (secrets come from .kamal/secrets).
+env:
+  clear:
+    REDIS_URL: redis://breakfast_tracker-redis:6379/1
+    # RAILS_LOG_LEVEL: debug
+  secret:
+    - RAILS_MASTER_KEY
+
+# Aliases are triggered with "bin/kamal <alias>". You can overwrite arguments on invocation:
+# "bin/kamal logs -r job" will tail logs from the first server in the job section.
+#
+# aliases:
+#   shell: app exec --interactive --reuse "bash"
+
+ssh:
+  keys_only: false
+  keys: [ "~/.ssh/id_ed25519_digitalocean.pub" ]
+
+volumes:
+  - "breakfast_tracker-storage:/rails/storage"
+
+accessories:
+  redis:
+    image: redis:7.0
+    cmd: redis-server --save 60 1 --loglevel warning
+    host: do-toronto
+    port: 127.0.0.1:6379:6379
+    directories:
+      - data:/data
