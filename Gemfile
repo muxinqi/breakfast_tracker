@@ -87,8 +87,8 @@ gem 'crawler_detect'
 # The safe Markdown parser, reloaded.
 gem 'redcarpet'
 
-# Simple, efficient background processing for Ruby
-gem "sidekiq", "~> 7.1"
+# Database-backed Active Job backend
+gem "solid_queue", "~> 1.0"
 
 # Create beautiful JavaScript charts with one line of Ruby
 gem "chartkick", "~> 5.0"

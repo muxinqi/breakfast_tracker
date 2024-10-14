@@ -33,25 +33,5 @@ plugin :tmp_restart
 # In other environments, only set the PID file if requested.
 pidfile ENV["PIDFILE"] if ENV["PIDFILE"]
 
-# Sidekiq Embedding START>>>
-workers 2
-
-# preloading the application is necessary to ensure
-# the configuration in your initializer runs before
-# the boot callback below.
-preload_app!
-
-x = nil
-on_worker_boot do
-  x = Sidekiq.configure_embed do |config|
-    # config.logger.level = Logger::DEBUG
-    config.queues = %w[critical default low]
-    config.concurrency = 2
-  end
-  x.run
-end
-
-on_worker_shutdown do
-  x&.stop
-end
-# Sidekiq Embedding END<<<
+# Run the Solid Queue's supervisor together with Puma and have Puma monitor and manage it.
+plugin :solid_queue
