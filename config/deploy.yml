@@ -1,7 +1,7 @@
 # Name of your application. Used to uniquely configure containers.
 service: breakfast_tracker
 
-image: ghcr.io/muxinqi/breakfast_tracker
+image: muxinqi/breakfast_tracker
 
 servers:
   web:
@@ -50,6 +50,6 @@ accessories:
     image: redis:7.0
     cmd: redis-server --save 60 1 --loglevel warning
     host: do-toronto
-    port: 127.0.0.1:6379:6379
+    # port: 127.0.0.1:6379:6379
     directories:
       - data:/data
