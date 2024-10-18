@@ -53,9 +53,7 @@ group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
 
-  gem "guard"
-  gem "guard-livereload", "~> 2.5", require: false
-  gem "rack-livereload"
+  gem "rails_live_reload"
 end
 
 group :test do
