@@ -1,0 +1,17 @@
+access-key-id: $S3_ACCESS_KEY_ID
+secret-access-key: $S3_SECRET_ACCESS_KEY
+
+dbs:
+  - path: /storage/production.sqlite3
+    replicas:
+      - type: s3
+        endpoint: $S3_ENDPOINT_URL
+        bucket: $S3_BUCKET_NAME
+        path: db/production.sqlite3
+
+  - path: /storage/production_queue.sqlite3
+    replicas:
+      - type: s3
+        endpoint: $S3_ENDPOINT_URL
+        bucket: $S3_BUCKET_NAME
+        path: db/production_queue.sqlite3
