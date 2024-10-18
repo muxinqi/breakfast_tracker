@@ -79,7 +79,7 @@ gem "redcarpet"
 gem "solid_queue", "~> 1.0"
 
 # Create beautiful JavaScript charts with one line of Ruby
-gem "chartkick", "~> 5.0"
+gem "chartkick", "~> 5.1"
 
 # The simplest way to group temporal data
 gem "groupdate", "~> 6.4"
