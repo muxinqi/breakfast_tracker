@@ -13,7 +13,6 @@ servers:
 proxy: 
   ssl: true
   host: breakfast-tracker.mxq.im
-  app_port: 3000
 
 registry:
   server: ghcr.io
