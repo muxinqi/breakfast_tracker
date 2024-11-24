@@ -8,7 +8,7 @@ dbs:
         endpoint: $S3_ENDPOINT_URL
         bucket: $S3_BUCKET_NAME
         path: db/production.sqlite3
-        validation-interval: 3d
+        validation-interval: 72h
 
   - path: /storage/production_queue.sqlite3
     replicas:
