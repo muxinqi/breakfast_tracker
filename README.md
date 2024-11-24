@@ -26,12 +26,6 @@ $ rails server
 ```
 
 ## 部署
-
-```dotenv
-# .breakfast_tracker.env
-REDIS_URL=redis://redis:6379/1
-```
-
 ```yaml
 # docker-compose.yml
 version: '3'
@@ -41,8 +35,6 @@ services:
     image: ghcr.io/muxinqi/breakfast-tracker:1
     container_name: breakfast_tracker
     restart: always
-    env_file:
-      - .breakfast_tracker.env
     ports:
       - "3000:3000"
     environment:
@@ -50,17 +42,8 @@ services:
     volumes:
       - breakfast_tracker-storage:/rails/storage
 
-  redis:
-    image: redis:7.2
-    container_name: redis
-    restart: always
-    command: redis-server --save 60 1 --loglevel warning
-    volumes:
-      - redis-data:/data
-
 volumes:
   breakfast_tracker-storage:
-  redis-data:
 ```
 
 ### 启动服务
