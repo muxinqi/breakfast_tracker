@@ -20,6 +20,10 @@ gem "jbuilder"
 # Use Redis adapter to run Action Cable in production
 gem "redis", ">= 4.0.1"
 
+gem "solid_queue", "~> 1.0"
+gem "solid_cache", "~> 1.0"
+gem "solid_cable", "~> 3.0"
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
@@ -74,9 +78,6 @@ gem "crawler_detect"
 
 # The safe Markdown parser, reloaded.
 gem "redcarpet"
-
-# Database-backed Active Job backend
-gem "solid_queue", "~> 1.0"
 
 # Create beautiful JavaScript charts with one line of Ruby
 gem "chartkick", "~> 5.1"

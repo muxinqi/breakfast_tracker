@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_14_021008) do
+ActiveRecord::Schema[8.0].define(version: 2024_10_14_021008) do
   create_table "active_analytics_views_per_days", force: :cascade do |t|
     t.string "site", null: false
     t.string "page", null: false
