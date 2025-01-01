@@ -104,7 +104,7 @@ GEM
     crawler_detect (1.2.5)
       qonfig (>= 0.24)
     date (3.4.0)
-    debug (1.9.2)
+    debug (1.10.0)
       irb (~> 1.10)
       reline (>= 0.3.8)
     dotenv (3.1.4)
