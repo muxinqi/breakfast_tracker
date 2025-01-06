@@ -18,7 +18,7 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
-gem "solid_queue", "~> 1.0"
+gem "solid_queue", "~> 1.1"
 gem "solid_cache", "~> 1.0"
 gem "solid_cable", "~> 3.0"
 
